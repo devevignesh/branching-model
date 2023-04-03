@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - develop
+      - "release/**"
+      - master
+name: Release - Deploy Guest App to AWS S3 and Create PR to Backend using Github Actions
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run number with offset
+      env:
+        NUM: ${{ github.run_number }}
+      run: |
+       echo "GITHUB_RUN_NUMBER_WITH_OFFSET=$(($NUM+2000))" >> $GITHUB_ENV
+    - run: echo ${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+        cache: 'yarn'
+    - name: Build App
+      run: |
+       echo "build"
+      env:
+        CI: "" 
+    - name: Move index.html
+      run: |
+       echo "moving file here"
+    - name: Deploy file to s3
+      run: |
+       echo "deploy"   
+    - name: Create pull request
+      env:
+        INPUT_SOURCE_FOLDER: 'pull_request/guest-app.html'
+        INPUT_DESTINATION_BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
+        INPUT_DESTINATION_HEAD_BRANCH: 'guest-build-v${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}'
+      run: |
+        echo "$INPUT_DESTINATION_BASE_BRANCH"
