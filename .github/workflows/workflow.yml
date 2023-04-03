@@ -27,4 +27,4 @@ jobs:
       run: |
         echo "${BRANCH_NAME}"
         echo "${BRANCH_NAME1}"
-        echo "something happing in release"
+        echo "something happing in release agin"
