@@ -22,6 +22,8 @@ jobs:
         INPUT_SOURCE_FOLDER: 'pull_request/guest-app.html'
         INPUT_DESTINATION_BASE_BRANCH: '${GITHUB_REF#refs/heads/}'
         INPUT_DESTINATION_HEAD_BRANCH: 'guest-build-v${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}'
+        BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
       run: |
         echo $(echo ${GITHUB_REF#refs/heads/})
         echo "${INPUT_DESTINATION_BASE_BRANCH}"
+        echo "${BRANCH_NAME}"
