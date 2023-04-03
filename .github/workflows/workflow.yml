@@ -20,7 +20,7 @@ jobs:
     - name: Create pull request
       env:
         INPUT_SOURCE_FOLDER: 'pull_request/guest-app.html'
-        INPUT_DESTINATION_BASE_BRANCH: "${GITHUB_REF#refs/heads/}"
+        INPUT_DESTINATION_BASE_BRANCH: "$(echo ${GITHUB_REF#refs/heads/})"
         INPUT_DESTINATION_HEAD_BRANCH: 'guest-build-v${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}'
       run: |
         echo "$INPUT_DESTINATION_BASE_BRANCH"
