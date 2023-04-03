@@ -24,6 +24,8 @@ jobs:
         INPUT_DESTINATION_HEAD_BRANCH: 'guest-build-v${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}'
         BRANCH_NAME: ${{ github.head_ref }} 
         BRANCH_NAME1: ${{ github.ref_name }} 
+        BRANCH_NAME2: ${{ github }} 
       run: |
         echo "${BRANCH_NAME}"
         echo "${BRANCH_NAME1}"
+        echo "${BRANCH_NAME2}"
