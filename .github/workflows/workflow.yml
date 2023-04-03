@@ -25,3 +25,5 @@ jobs:
       run: |
         echo ${{ github.ref }}
         echo "$INPUT_DESTINATION_BASE_BRANCH"
+        CURRENT_BRANCH=$(echo ${GITHUB_REF#refs/heads/})
+        echo CURRENT_BRANCH
