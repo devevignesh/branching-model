@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - develop
-      - "release/**"
+      - release
       - master
 name: Release - Deploy Guest App to AWS S3 and Create PR to Backend using Github Actions
 jobs:
